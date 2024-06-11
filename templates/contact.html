@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Contato{% endblock titulo %}
+
+{% block conteudo %}
+<header>
+    <h1>Contact My Flask Application</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">Sobre</a></li>
+        <li><a href="/contact">Contato</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Informações de Contato</h2>
+    <p>Se você tiver alguma dúvida, sinta-se à vontade para nos contatar!</p>
+    <form action="/contact" method="post">
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="message">Mensagem:</label><br>
+        <textarea id="message" name="message"></textarea><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 Minha Aplicação Flask</p>
+</footer>
+
+<p>
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Mostrar/Esconder Elemento 1</a>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Mostrar/Esconder Elemento 2</button>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Mostrar/Esconder Ambos</button>
+</p>
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+        Conteúdo do primeiro elemento colapsável.
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample2">
+      <div class="card card-body">
+        Conteúdo do segundo elemento colapsável.
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock conteudo %}
