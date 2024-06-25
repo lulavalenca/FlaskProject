@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h2 style="text-align: center;">Lista de Cursos</h2>
+<hr>
+
+<br><br>
+<a href="{{ url_for('cria_curso') }}" class="btn btn-secondary">Adicionar Curso</a>
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">CH</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+        <tr>
+            <td>{{ curso.id }}</td>
+            <td>{{ curso.nome }}</td>
+            <td>{{ curso.descricao }}</td>
+            <td>{{ curso.ch }}</td>
+            <td>
+                <a href="{{ url_for('atualiza_curso', id=curso.id) }}" class="btn btn-primary btn-xs">Editar</a>
+                <a href="{{ url_for('remove_curso', id=curso.id) }}" onclick="return confirm('Deseja excluir esse registro?')" class="btn btn-danger btn-xs">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+        {% if pagination.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('lista_cursos', page=pagination.prev_num) }}">Anterior</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Anterior</span>
+        </li>
+        {% endif %}
+        
+        {% for page_num in pagination.iter_pages() %}
+        <li class="page-item {% if page_num == pagination.page %}active{% endif %}">
+            <a class="page-link" href="{{ url_for('lista_cursos', page=page_num) }}">{{ page_num }}</a>
+        </li>
+        {% endfor %}
+        
+        {% if pagination.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('lista_cursos', page=pagination.next_num) }}">Próxima</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Próxima</span>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endblock conteudo %}

@@ -1,39 +1,18 @@
 {% extends 'base.html' %}
-
-{% block titulo %}Página Inicial{% endblock titulo %}
-
 {% block conteudo %}
-<header>
-    <h1>Bem-vindo à minha aplicação Flask</h1>
-</header>
-<nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">Sobre</a></li>
-        <li><a href="/contact">Contato</a></li>
-    </ul>
-</nav>
-<main>
-    <p>Esta é a página inicial.</p>
-</main>
-<footer>
-    <p>&copy; 2024 Minha Aplicação Flask</p>
-</footer>
-
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Endereço de Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">Nós nunca compartilharemos seu email com ninguém.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Senha</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Lembre-me</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
+<h2 style="text-align: center;">Lista de Frutas</h2>
+<hr>
+<ul class="list-group">
+	{% for fruta in frutas %}
+		<li class="list-group-item">{{fruta}}</li>
+	{% endfor %}
+	<form action="{{url_for('principal')}}" method="POST">
+		<div class="form-group">
+			<label for="exemploFruta">Fruta</label>
+			<input class="form-control" id="exemploFruta" type="text" name="fruta" placeholder="Digite o nome de uma fruta">
+		</div>
+		
+		<button class="btn btn-success">Adicionar</button>
+	</form>
+</ul>
 {% endblock conteudo %}

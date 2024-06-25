@@ -16,29 +16,141 @@
         "documentation": {}
     },
     {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request.",
+        "description": "urllib.request.",
+        "detail": "urllib.request.",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "cursos",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class cursos(db.Model):\n\tid = db.Column(db.Integer, primary_key=True)\n\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):\n\t\tself.nome = nome\n\t\tself.descricao = descricao\n\t\tself.ch = ch\n@app.route('/', methods=[\"GET\", \"POST\"])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
         "label": "principal",
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def principal():\n    frutas = []\n    return render_template(\"index.html\", frutas=frutas)\n@app.route('/about')\ndef about():\n    return render_template(\"about.html\")\n@app.route('/contact')\ndef contact():\n    return render_template(\"contact.html\")\nif __name__ == '__main__':",
+        "peekOfCode": "def principal():\n\t#frutas = [\"Morango\", \"Uva\", \"Laranja\", \"Mamão\", \"Maçã\", \"Pêra\", \"Melão\", \"Abacaxi\"]\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"fruta\"):\n\t\t\tfrutas.append(request.form.get(\"fruta\"))\n\treturn render_template(\"index.html\", frutas=frutas)\n@app.route('/sobre', methods=[\"GET\", \"POST\"])\ndef sobre():\n\t#notas = {\"Fulano\":5.0, \"Beltrano\":6.0, \"Aluno\": 7.0, \"Sicrano\":8.5, \"Rodrigo\":9.5}\n\tif request.method == \"POST\":",
         "detail": "app",
         "documentation": {}
     },
     {
-        "label": "about",
+        "label": "sobre",
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def about():\n    return render_template(\"about.html\")\n@app.route('/contact')\ndef contact():\n    return render_template(\"contact.html\")\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "peekOfCode": "def sobre():\n\t#notas = {\"Fulano\":5.0, \"Beltrano\":6.0, \"Aluno\": 7.0, \"Sicrano\":8.5, \"Rodrigo\":9.5}\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"aluno\") and request.form.get(\"nota\"):\n\t\t\tregistros.append({\"aluno\": request.form.get(\"aluno\"),\"nota\": request.form.get(\"nota\")})\n\treturn render_template(\"sobre.html\", registros=registros)\n@app.route('/filmes/<propriedade>')\ndef filmes(propriedade):\n\tif propriedade == 'populares':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"",
         "detail": "app",
         "documentation": {}
     },
     {
-        "label": "contact",
+        "label": "filmes",
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def contact():\n    return render_template(\"contact.html\")\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "peekOfCode": "def filmes(propriedade):\n\tif propriedade == 'populares':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'kids':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == '2010':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'drama':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'tom_cruise':",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "lista_cursos",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def lista_cursos():\n    page = request.args.get('page', 1, type=int)\n    per_page = 5  # Defina quantos cursos deseja por página\n    todos_cursos = cursos.query.paginate(page=page, per_page=per_page)\n    return render_template(\"cursos.html\", cursos=todos_cursos.items, pagination=todos_cursos)\n@app.route('/cria_curso', methods=[\"GET\", \"POST\"])\ndef cria_curso():\n\tnome = request.form.get('nome')\n\tdescricao = request.form.get('descricao')\n\tch = request.form.get('ch')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "cria_curso",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def cria_curso():\n\tnome = request.form.get('nome')\n\tdescricao = request.form.get('descricao')\n\tch = request.form.get('ch')\n\tif request.method == 'POST':\n\t\tif not nome or not descricao or not ch:\n\t\t\tflash(\"Preencha todos os campos do formulário\",\"error\")\n\t\telse:\n\t\t\tcurso = cursos(nome, descricao, ch)\n\t\t\tdb.session.add(curso)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "atualiza_curso",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def atualiza_curso(id):\n\tcurso = cursos.query.filter_by(id=id).first()\n\tif request.method == 'POST':\n\t\tnome = request.form[\"nome\"]\n\t\tdescricao = request.form[\"descricao\"]\n\t\tch = request.form[\"ch\"]\n\t\tcursos.query.filter_by(id=id).update({\"nome\":nome, \"descricao\":descricao, \"ch\":ch})\n\t\tdb.session.commit()\n\t\treturn redirect(url_for('lista_cursos'))\n\treturn render_template(\"atualiza_curso.html\", curso=curso)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "remove_curso",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def remove_curso(id):\n\tcurso = cursos.query.filter_by(id=id).first()\n\tdb.session.delete(curso)\n\tdb.session.commit()\n\treturn redirect(url_for('lista_cursos'))\nif __name__ == \"__main__\":\n    with app.app_context():\n        db.create_all()\n    app.run(debug=True)",
         "detail": "app",
         "documentation": {}
     },
@@ -47,8 +159,296 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = Flask(__name__)\n@app.route('/', methods=['GET', 'POST'])\ndef principal():\n    frutas = []\n    return render_template(\"index.html\", frutas=frutas)\n@app.route('/about')\ndef about():\n    return render_template(\"about.html\")\n@app.route('/contact')\ndef contact():",
+        "peekOfCode": "app = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cursos.sqlite3'\napp.config['SECRET_KEY'] = \"random string\"\ndb = SQLAlchemy(app)\nfrutas = []\nregistros = []\nclass cursos(db.Model):\n\tid = db.Column(db.Integer, primary_key=True)\n\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))",
         "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_DATABASE_URI']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cursos.sqlite3'\napp.config['SECRET_KEY'] = \"random string\"\ndb = SQLAlchemy(app)\nfrutas = []\nregistros = []\nclass cursos(db.Model):\n\tid = db.Column(db.Integer, primary_key=True)\n\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SECRET_KEY']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['SECRET_KEY'] = \"random string\"\ndb = SQLAlchemy(app)\nfrutas = []\nregistros = []\nclass cursos(db.Model):\n\tid = db.Column(db.Integer, primary_key=True)\n\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "db = SQLAlchemy(app)\nfrutas = []\nregistros = []\nclass cursos(db.Model):\n\tid = db.Column(db.Integer, primary_key=True)\n\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):\n\t\tself.nome = nome",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "frutas",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "frutas = []\nregistros = []\nclass cursos(db.Model):\n\tid = db.Column(db.Integer, primary_key=True)\n\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):\n\t\tself.nome = nome\n\t\tself.descricao = descricao",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "registros",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "registros = []\nclass cursos(db.Model):\n\tid = db.Column(db.Integer, primary_key=True)\n\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):\n\t\tself.nome = nome\n\t\tself.descricao = descricao\n\t\tself.ch = ch",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tid",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tid = db.Column(db.Integer, primary_key=True)\n\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):\n\t\tself.nome = nome\n\t\tself.descricao = descricao\n\t\tself.ch = ch\n@app.route('/', methods=[\"GET\", \"POST\"])\ndef principal():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tnome",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tnome = db.Column(db.String(50))\n\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):\n\t\tself.nome = nome\n\t\tself.descricao = descricao\n\t\tself.ch = ch\n@app.route('/', methods=[\"GET\", \"POST\"])\ndef principal():\n\t#frutas = [\"Morango\", \"Uva\", \"Laranja\", \"Mamão\", \"Maçã\", \"Pêra\", \"Melão\", \"Abacaxi\"]",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tdescricao",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tdescricao = db.Column(db.String(100))\n\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):\n\t\tself.nome = nome\n\t\tself.descricao = descricao\n\t\tself.ch = ch\n@app.route('/', methods=[\"GET\", \"POST\"])\ndef principal():\n\t#frutas = [\"Morango\", \"Uva\", \"Laranja\", \"Mamão\", \"Maçã\", \"Pêra\", \"Melão\", \"Abacaxi\"]\n\tif request.method == \"POST\":",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tch",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tch = db.Column(db.Integer)\n\tdef __init__(self, nome, descricao, ch):\n\t\tself.nome = nome\n\t\tself.descricao = descricao\n\t\tself.ch = ch\n@app.route('/', methods=[\"GET\", \"POST\"])\ndef principal():\n\t#frutas = [\"Morango\", \"Uva\", \"Laranja\", \"Mamão\", \"Maçã\", \"Pêra\", \"Melão\", \"Abacaxi\"]\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"fruta\"):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tself.nome",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\tself.nome = nome\n\t\tself.descricao = descricao\n\t\tself.ch = ch\n@app.route('/', methods=[\"GET\", \"POST\"])\ndef principal():\n\t#frutas = [\"Morango\", \"Uva\", \"Laranja\", \"Mamão\", \"Maçã\", \"Pêra\", \"Melão\", \"Abacaxi\"]\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"fruta\"):\n\t\t\tfrutas.append(request.form.get(\"fruta\"))\n\treturn render_template(\"index.html\", frutas=frutas)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tself.descricao",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\tself.descricao = descricao\n\t\tself.ch = ch\n@app.route('/', methods=[\"GET\", \"POST\"])\ndef principal():\n\t#frutas = [\"Morango\", \"Uva\", \"Laranja\", \"Mamão\", \"Maçã\", \"Pêra\", \"Melão\", \"Abacaxi\"]\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"fruta\"):\n\t\t\tfrutas.append(request.form.get(\"fruta\"))\n\treturn render_template(\"index.html\", frutas=frutas)\n@app.route('/sobre', methods=[\"GET\", \"POST\"])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tself.ch",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\tself.ch = ch\n@app.route('/', methods=[\"GET\", \"POST\"])\ndef principal():\n\t#frutas = [\"Morango\", \"Uva\", \"Laranja\", \"Mamão\", \"Maçã\", \"Pêra\", \"Melão\", \"Abacaxi\"]\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"fruta\"):\n\t\t\tfrutas.append(request.form.get(\"fruta\"))\n\treturn render_template(\"index.html\", frutas=frutas)\n@app.route('/sobre', methods=[\"GET\", \"POST\"])\ndef sobre():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t#frutas",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t#frutas = [\"Morango\", \"Uva\", \"Laranja\", \"Mamão\", \"Maçã\", \"Pêra\", \"Melão\", \"Abacaxi\"]\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"fruta\"):\n\t\t\tfrutas.append(request.form.get(\"fruta\"))\n\treturn render_template(\"index.html\", frutas=frutas)\n@app.route('/sobre', methods=[\"GET\", \"POST\"])\ndef sobre():\n\t#notas = {\"Fulano\":5.0, \"Beltrano\":6.0, \"Aluno\": 7.0, \"Sicrano\":8.5, \"Rodrigo\":9.5}\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"aluno\") and request.form.get(\"nota\"):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t#notas",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t#notas = {\"Fulano\":5.0, \"Beltrano\":6.0, \"Aluno\": 7.0, \"Sicrano\":8.5, \"Rodrigo\":9.5}\n\tif request.method == \"POST\":\n\t\tif request.form.get(\"aluno\") and request.form.get(\"nota\"):\n\t\t\tregistros.append({\"aluno\": request.form.get(\"aluno\"),\"nota\": request.form.get(\"nota\")})\n\treturn render_template(\"sobre.html\", registros=registros)\n@app.route('/filmes/<propriedade>')\ndef filmes(propriedade):\n\tif propriedade == 'populares':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'kids':",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\turl",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\turl = \"https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'kids':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == '2010':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'drama':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'tom_cruise':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\tresposta = urllib.request.urlopen(url)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\turl",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\turl = \"https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == '2010':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'drama':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'tom_cruise':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\tresposta = urllib.request.urlopen(url)\n\tdados = resposta.read()\n\tjsondata = json.loads(dados)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\turl",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\turl = \"https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'drama':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'tom_cruise':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\tresposta = urllib.request.urlopen(url)\n\tdados = resposta.read()\n\tjsondata = json.loads(dados)\n\treturn render_template(\"filmes.html\", filmes=jsondata['results'])\n@app.route('/cursos')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\turl",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\telif propriedade == 'tom_cruise':\n\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\tresposta = urllib.request.urlopen(url)\n\tdados = resposta.read()\n\tjsondata = json.loads(dados)\n\treturn render_template(\"filmes.html\", filmes=jsondata['results'])\n@app.route('/cursos')\ndef lista_cursos():\n    page = request.args.get('page', 1, type=int)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\turl",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\turl = \"https://api.themoviedb.org/3/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\n\tresposta = urllib.request.urlopen(url)\n\tdados = resposta.read()\n\tjsondata = json.loads(dados)\n\treturn render_template(\"filmes.html\", filmes=jsondata['results'])\n@app.route('/cursos')\ndef lista_cursos():\n    page = request.args.get('page', 1, type=int)\n    per_page = 5  # Defina quantos cursos deseja por página\n    todos_cursos = cursos.query.paginate(page=page, per_page=per_page)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tresposta",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tresposta = urllib.request.urlopen(url)\n\tdados = resposta.read()\n\tjsondata = json.loads(dados)\n\treturn render_template(\"filmes.html\", filmes=jsondata['results'])\n@app.route('/cursos')\ndef lista_cursos():\n    page = request.args.get('page', 1, type=int)\n    per_page = 5  # Defina quantos cursos deseja por página\n    todos_cursos = cursos.query.paginate(page=page, per_page=per_page)\n    return render_template(\"cursos.html\", cursos=todos_cursos.items, pagination=todos_cursos)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tdados",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tdados = resposta.read()\n\tjsondata = json.loads(dados)\n\treturn render_template(\"filmes.html\", filmes=jsondata['results'])\n@app.route('/cursos')\ndef lista_cursos():\n    page = request.args.get('page', 1, type=int)\n    per_page = 5  # Defina quantos cursos deseja por página\n    todos_cursos = cursos.query.paginate(page=page, per_page=per_page)\n    return render_template(\"cursos.html\", cursos=todos_cursos.items, pagination=todos_cursos)\n@app.route('/cria_curso', methods=[\"GET\", \"POST\"])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tjsondata",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tjsondata = json.loads(dados)\n\treturn render_template(\"filmes.html\", filmes=jsondata['results'])\n@app.route('/cursos')\ndef lista_cursos():\n    page = request.args.get('page', 1, type=int)\n    per_page = 5  # Defina quantos cursos deseja por página\n    todos_cursos = cursos.query.paginate(page=page, per_page=per_page)\n    return render_template(\"cursos.html\", cursos=todos_cursos.items, pagination=todos_cursos)\n@app.route('/cria_curso', methods=[\"GET\", \"POST\"])\ndef cria_curso():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tnome",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tnome = request.form.get('nome')\n\tdescricao = request.form.get('descricao')\n\tch = request.form.get('ch')\n\tif request.method == 'POST':\n\t\tif not nome or not descricao or not ch:\n\t\t\tflash(\"Preencha todos os campos do formulário\",\"error\")\n\t\telse:\n\t\t\tcurso = cursos(nome, descricao, ch)\n\t\t\tdb.session.add(curso)\n\t\t\tdb.session.commit()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tdescricao",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tdescricao = request.form.get('descricao')\n\tch = request.form.get('ch')\n\tif request.method == 'POST':\n\t\tif not nome or not descricao or not ch:\n\t\t\tflash(\"Preencha todos os campos do formulário\",\"error\")\n\t\telse:\n\t\t\tcurso = cursos(nome, descricao, ch)\n\t\t\tdb.session.add(curso)\n\t\t\tdb.session.commit()\n\t\t\treturn redirect(url_for('lista_cursos'))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tch",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tch = request.form.get('ch')\n\tif request.method == 'POST':\n\t\tif not nome or not descricao or not ch:\n\t\t\tflash(\"Preencha todos os campos do formulário\",\"error\")\n\t\telse:\n\t\t\tcurso = cursos(nome, descricao, ch)\n\t\t\tdb.session.add(curso)\n\t\t\tdb.session.commit()\n\t\t\treturn redirect(url_for('lista_cursos'))\n\treturn render_template(\"novo_curso.html\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tcurso",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\t\tcurso = cursos(nome, descricao, ch)\n\t\t\tdb.session.add(curso)\n\t\t\tdb.session.commit()\n\t\t\treturn redirect(url_for('lista_cursos'))\n\treturn render_template(\"novo_curso.html\")\n@app.route('/<int:id>/atualiza_curso', methods=[\"GET\", \"POST\"])\ndef atualiza_curso(id):\n\tcurso = cursos.query.filter_by(id=id).first()\n\tif request.method == 'POST':\n\t\tnome = request.form[\"nome\"]",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tcurso",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tcurso = cursos.query.filter_by(id=id).first()\n\tif request.method == 'POST':\n\t\tnome = request.form[\"nome\"]\n\t\tdescricao = request.form[\"descricao\"]\n\t\tch = request.form[\"ch\"]\n\t\tcursos.query.filter_by(id=id).update({\"nome\":nome, \"descricao\":descricao, \"ch\":ch})\n\t\tdb.session.commit()\n\t\treturn redirect(url_for('lista_cursos'))\n\treturn render_template(\"atualiza_curso.html\", curso=curso)\n@app.route('/<int:id>/remove_curso')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tnome",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\tnome = request.form[\"nome\"]\n\t\tdescricao = request.form[\"descricao\"]\n\t\tch = request.form[\"ch\"]\n\t\tcursos.query.filter_by(id=id).update({\"nome\":nome, \"descricao\":descricao, \"ch\":ch})\n\t\tdb.session.commit()\n\t\treturn redirect(url_for('lista_cursos'))\n\treturn render_template(\"atualiza_curso.html\", curso=curso)\n@app.route('/<int:id>/remove_curso')\ndef remove_curso(id):\n\tcurso = cursos.query.filter_by(id=id).first()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tdescricao",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\tdescricao = request.form[\"descricao\"]\n\t\tch = request.form[\"ch\"]\n\t\tcursos.query.filter_by(id=id).update({\"nome\":nome, \"descricao\":descricao, \"ch\":ch})\n\t\tdb.session.commit()\n\t\treturn redirect(url_for('lista_cursos'))\n\treturn render_template(\"atualiza_curso.html\", curso=curso)\n@app.route('/<int:id>/remove_curso')\ndef remove_curso(id):\n\tcurso = cursos.query.filter_by(id=id).first()\n\tdb.session.delete(curso)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tch",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\t\tch = request.form[\"ch\"]\n\t\tcursos.query.filter_by(id=id).update({\"nome\":nome, \"descricao\":descricao, \"ch\":ch})\n\t\tdb.session.commit()\n\t\treturn redirect(url_for('lista_cursos'))\n\treturn render_template(\"atualiza_curso.html\", curso=curso)\n@app.route('/<int:id>/remove_curso')\ndef remove_curso(id):\n\tcurso = cursos.query.filter_by(id=id).first()\n\tdb.session.delete(curso)\n\tdb.session.commit()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "\tcurso",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "\tcurso = cursos.query.filter_by(id=id).first()\n\tdb.session.delete(curso)\n\tdb.session.commit()\n\treturn redirect(url_for('lista_cursos'))\nif __name__ == \"__main__\":\n    with app.app_context():\n        db.create_all()\n    app.run(debug=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "url",
+        "kind": 5,
+        "importPath": "teste",
+        "description": "teste",
+        "peekOfCode": "url = \"https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ef5d9fe14bd68061311051bc1554074e\"\ntry:\n    resposta = urllib.request.urlopen(url)\n    dados = json.load(resposta)\n    for filme in dados['results'][:10]:\n        titulo = filme['title']\n        popularidade = filme['popularity']\n        data_lancamento = filme['release_date']\n        print(f\"Título: {titulo}, Popularidade: {popularidade}, Data de Lançamento: {data_lancamento}\")\nexcept Exception as e:",
+        "detail": "teste",
         "documentation": {}
     }
 ]
